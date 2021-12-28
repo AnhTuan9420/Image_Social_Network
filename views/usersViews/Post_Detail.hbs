@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Interesting</title>
+  <link rel='stylesheet' href='/assets/css/postdetail.css' />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  {{!--
+  <script src="/assets/js/moment.js"></script> --}}
+
+  <style type="text/css">
+    .scrollbar {
+      margin-left: 15px;
+      height: 473px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div class="left">
+      <div class="post-content">
+        <img src="/uploads/{{Posts.postImage}}" alt="Posts Image">
+      </div>
+    </div>
+    <div class="right">
+      <div class="post">
+        <nav>
+          <div class="nav-middle">
+            <a href="/user/HomePage">
+              <i class="fa fa-home"></i>
+            </a>
+
+            <a href="/user/Profile">
+              <i class="fa fa-user"></i>
+            </a>
+
+            <a href="/user/SavePosts">
+              <i class="fa fa-bookmark"></i>
+            </a>
+
+            {{!-- <a href="/user/Messages">
+              <i class="fab fa-facebook-messenger"></i>
+            </a> --}}
+            <a href="/account/logout">
+              <i class="fas fa-sign-out-alt"></i>
+            </a>
+          </div>
+        </nav>
+        <div class="scrollbar">
+          <div class="post-top">
+            <div class="dp">
+              {{#equals Posts.author.account_id session.userId}}
+              <a href="/user/Profile">
+                <img src="/uploads/{{Posts.author.Avatar}}" alt="Avartar">
+              </a>
+              {{else}}
+              <a href="/user/OtherProfile/{{Posts.author._id}}">
+                <img src="/uploads/{{Posts.author.Avatar}}" alt="Avartar">
+              </a>
+              {{/equals}}
+            </div>
+            <div class="post-info">
+              <p class="name">{{Posts.author.name}} <img style="width: 13px; margin-left: 3px;"
+                  src="/assets/images/verify.png" title="Verified"></p>
+              <span class="time">{{moment Posts.author.timeCreated format ="MMMM DD - YYYY   hh:mm:ss A"}}</span>
+            </div>
+            <i class="fas fa-ellipsis-h">
+            </i>
+          </div>
+          <div class="post-content">
+            <p style="color: royalblue; word-break: break-all;">#{{Posts.title}}</p>
+            <p style=" margin-top: 10px; margin-bottom: 5px; word-break: break-all;"><strong>DESC: </strong>
+              {{Posts.desc}}</p>
+          </div>
+          <p style="margin-bottom: 10px; "> 
+            <strong style="margin-left: 10px;">{{likecount}}</strong> Likes
+            <strong style="color: white;">-------------------------</strong>
+            <strong>{{comcount}}</strong> Comments
+            <strong style="color: white;">-----------------------</strong>
+            <strong>{{savecount}}</strong> Saved
+            
+          </p>
+
+          <div class="post-bottom">
+            <div class="action">
+              {{#equals checkLike.likePostsExists.account_id session.userId}}
+              <form action="/user/unlikePost" method="POST">
+                <input type="hidden" name="_id" value="{{LikePosts._id}}">
+                <input type="hidden" name="_method" value="DELETE">
+                <button style="border: 0;color: #7256c7; font-size: 19px;background: white;" type="submit">
+                  <img style="width: 20px;" src="/assets/images/like-blue.png">
+                  <span style="font-family: auto;"> Like</span></button>
+              </form>
+              {{else}}
+              <form action="/user/likePost/{{Posts._id}}" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <button style="border: 0; font-size: 19px;background: white;" type="submit">
+                  <img style="width: 20px;" src="/assets/images/like.png">
+                  <span style="font-family: auto;"> Like</span></button>
+              </form>
+              {{/equals}}
+            </div>
+            <div class="action">
+              <i class="far fa-comment"></i>
+              <span>Comment</span>
+            </div>
+            <div class="action">
+              {{#equals check.Exist.account_id session.userId}}
+              <form action="/user/unSavePosts" method="POST">
+                <input type="hidden" name="_id" value="{{SavePosts._id}}">
+                <input type="hidden" name="_method" value="DELETE">
+                <button style="border: 0;color: #7256c7; font-size: 18px;background: white;" type="submit"
+                  class="fa fa-bookmark">
+                  <span style="font-family: auto;"> Save</span></button>
+              </form>
+              {{else}}
+              <form action="/user/SavePosts/{{Posts._id}}" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <button style="border: 0; font-size: 18px;background: white;" type="submit" class="fa fa-bookmark">
+                  <span style="font-family: auto;"> Save</span></button>
+              </form>
+              {{/equals}}
+            </div>
+          </div>
+          <div class="pt-5 mt-5" style="margin-top: 10px;">
+            <ul class="comment-list" id="listComment">
+              {{#each Comment}}
+              <li class="comment">
+                <div class="vcard">
+                  <img src="/uploads/{{author.Avatar}}" alt="Avartar">
+                </div>
+                <div class="comment-body">
+                  <div class="post-info">
+                    <h3 class="name">{{author.name}}
+                      <input type="hidden" id="sessionCom" value="{{../session.userId}}">
+                      {{#equals author.account_id._id ../session.userId}}
+                      <div class="deletes" style="float: right;">
+                        <form action="/user/deleteComment" method="POST" enctype="application/x-www-form-urlencoded">
+                          <input type="hidden" name="_id" value="{{_id}}">
+                          <input type="hidden" name="_method" value="DELETE">
+                          <button type="submit" style="border: 0;color: #8e6f6f; background-color: white;margin-top: 20px;">
+                            <i class="fas fa-trash" style="font-size:17px; margin-right: 25px;">Delete</i>
+                          </button>
+                        </form>
+                      </div>
+                      {{/equals}}
+                    </h3>
+                    <span class="meta">{{moment timeCreated format ="MMMM DD - YYYY"}}</span>
+                  </div>
+                  <p>
+                    {{content}}
+                  </p>
+                </div>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+
+        <div class="post-bottom">
+          <div class="post-top">
+            <div class="dp">
+              <img src="/uploads/{{User.Avatar}}" alt="Avartar">
+            </div>
+
+            <form class="uploadForm" id="ajaxComment" method="post">
+              <div class="row">
+                <div class="col-60">
+                  <textarea id="content" name="content" placeholder="Add comment..." required></textarea>
+                </div>
+                <div class="col-40">
+                  <input type="hidden" id="blogId" name="com_id" value="{{Posts._id}}">
+                  <input type="submit" id="submit" value="Add Comment">
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/ajax/ajaxComment.js"></script>
+
+
+  {{!--
+  <script>
+    //const m = moment();
+    //m.format('lll');
+    //moment().format("YYYY Do MM")
+  </script> --}}
+  {{!--
+  <script src="https://unpkg.com/moment"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script> --}}
+
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Interesting</title>
+    <link rel='stylesheet' href='/assets/css/profile.css' />
+    <link rel="stylesheet" href="/assets/css/homepage.css" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="/user/HomePage">
+                <img style="height: 50px;" src="/assets/images/logo11.png" alt="Logo" />
+            </a>
+            <input type="text" name="search" placeholder="Search Post ...">
+        </div>
+
+        <div class="nav-middle">
+            <a href="/user/HomePage" title="Home">
+                <i class="fa fa-home"></i>
+            </a>
+
+            <a class="active" title="Profile">
+                <i class="fa fa-user"></i>
+            </a>
+
+            <a href="/user/SavePosts" title="Saving">
+                <i class="fa fa-bookmark"></i>
+            </a>
+        </div>
+
+        <div class="nav-right">
+
+            <a href="#">
+                <i class="fa fa-bell"></i>
+            </a>
+            <a href="/account/logout">
+                <img style="width: 40px;" src="/assets/images/logout.png">
+            </a>
+        </div>
+    </nav>
+
+    <div class="mess-container" style="background-color: #fafafa;">
+        <div class="mess-details" style="background-color: #fafafa;border-bottom: 1px solid #c0a7a7; ">
+
+            <div class="row" style="float: left;">
+                <img style="height: 160px; width: 160px;object-fit: cover; border-radius: 50%;"
+                    src="/uploads/{{User.Avatar}}" alt="Avartar">
+            </div>
+            <div class="row" style="margin-left: 250px;">
+                <label class="follow"><strong>{{User.name}}</strong>
+                    <img style="width: 17px;" src="/assets/images/verify.png" title="Verified">
+                    
+                    {{#equals demo.FollowingExists.account_id session.userId}}
+                    <form action="/user/unfollowing" method="POST">
+                        <input type="hidden" name="_id" value="{{Following._id}}">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" style="margin-top: 15px;font-size: 17px;width: 100px; height: 28px;">
+                            <strong>unFollow</strong>
+                        </button>
+                    </form>
+                    {{else}}
+                    <form action="/user/following/{{User._id}}" method="POST">
+                        <input type="hidden" name="_method" value="PUT">
+                        <button type="submit" style="margin-top: 15px;font-size: 17px;width: 100px; height: 28px;">
+                            <strong>Follow</strong>
+                        </button>
+                    </form>
+                    {{/equals}}
+                   
+                </label>
+                <br>
+                <br>
+                <div class="row">
+                    <strong>{{postcount}}</strong>  posts
+                    <strong style="color: #fafafa;">--------------------------</strong>  
+                    <strong>{{followercount}}</strong>  followers
+                    <strong style="color: #fafafa;">--------------------------</strong>   
+                    <strong>{{followcount}}</strong>  following 
+                    <br>
+                    <br>
+                    Phone:  <strong>{{User.Phone}}</strong>
+                    <br>
+                    Address:  <strong>{{User.Address}}</strong>
+                    <br>
+                    DoB:  <strong>{{moment User.Age format ="MMMM DD - YYYY"}}</strong>
+                    <br>
+                    Email:  <strong>{{User.email}}</strong>
+                    <br>
+                    Gender:  <strong>{{User.gender}}</strong>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="main-posts" style="margin-top: 20px;">
+            {{#each Posts}}
+            <div class="post-box">
+                <a href="/user/Post_Detail/{{_id}}">
+                    <img src="/uploads/{{postImage}}" alt="Posts Image">
+                </a>
+            </div>
+            {{/each}}
+        </div>
+        <div class="footer-links">
+            <a>
+                <p class="mb-0 text-secondary" style="text-align: center; margin-top:10px;">
+                    Copyright ©
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> Anh Tuan.
+                </p>
+            </a>
+        </div>
+
+
+</body>
+
+</html>

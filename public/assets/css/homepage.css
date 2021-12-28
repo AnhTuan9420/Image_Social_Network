@@ -1,0 +1,592 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+nav {
+  height: 70px;
+  width: 100%;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px #ccc;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+nav .nav-left,
+nav .nav-right {
+  display: flex;
+  align-items: center;
+}
+
+nav .nav-left > img {
+  width: 51px;
+  border-radius: 16px;
+}
+/* nav .nav-left a{
+    width: auto;
+    height: auto;
+} */
+
+#alert-suc {
+  color: #85859e;
+  background-color: #fef5d6;
+  border-color: #fef1c2;
+  font-size: 21px;
+  margin-top: 11px;
+  text-align: center;
+  width: 697px;
+  padding: 8px;
+}
+
+
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+  cursor: pointer;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+
+.close {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  margin-right: 10px;
+}
+
+
+.close {
+  background: transparent
+  url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E")
+  50%/1em auto no-repeat;
+border: 0;
+border-radius: 0.25rem;
+box-sizing: content-box;
+color: #000;
+height: 1em;
+opacity: 0.5;
+padding: 0.25em;
+width: 1em;
+}
+
+
+nav .nav-left #se {
+  height: 40px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  background-color: #eee;
+  margin-left: 10px;
+}
+
+nav .nav-middle {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5px;
+}
+
+nav .nav-middle a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+  margin: 0px 33px;
+}
+
+nav .nav-middle a:hover {
+  background: rgb(233, 223, 223);
+}
+
+nav .nav-middle a.active {
+  color: royalblue;
+  position: relative;
+}
+
+nav .nav-middle a.active::after {
+  content: "";
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: royalblue;
+}
+
+nav .nav-middle a > i {
+  font-size: 28px;
+}
+
+nav .nav-right .profile,
+.container .left-panel .profile {
+  /* background: url('https://fontawesome.com/v5.9/icons/birthday-cake?style=solid'); */
+  height: 30px;
+  width: 30px;
+  background-size: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+nav .nav-right a {
+  text-decoration: none;
+  color: #333;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: #eee;
+  display: grid;
+  place-items: center;
+  margin-left: 1rem;
+}
+
+nav .nav-right a > i {
+  font-size: 18px;
+}
+
+.container {
+  background: #eee;
+  display: flex;
+}
+
+.container .left-panel,
+.container .right-panel {
+  position: sticky;
+  top: 70px;
+  width: 300px;
+  height: calc(100vh - 70px);
+}
+
+
+
+.container .left-panel ul {
+  padding: 10px 0px;
+}
+
+.container .left-panel ul li {
+  list-style: none;
+  display: flex;
+  padding: 0.7rem 1rem;
+  align-items: center;
+  transition: 0.3s;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.container .left-panel ul li:hover {
+  background: rgb(233, 223, 223);
+}
+
+.container .left-panel ul li > p {
+  margin-left: 10px;
+}
+
+.container .left-panel ul li > i {
+  font-size: 18px;
+  color: rgb(170, 136, 136);
+}
+
+.container .left-panel ul li > i.fa-calendar-week {
+  color: tomato;
+}
+
+.container .left-panel ul li i.fa-briefcase {
+  color: green;
+}
+
+.container .left-panel ul li i.fa-star {
+  color: yellowgreen;
+}
+
+.container .left-panel ul li i.fa-hands-helping {
+  color: indianred;
+}
+
+.container .left-panel .footer-links {
+  padding: 5px 1rem;
+}
+
+.container .left-panel .footer-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  margin-left: 15px;
+}
+
+.middle-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.middle-panel .story-section {
+  display: flex;
+  padding: 1rem;
+}
+
+.middle-panel .story-section .story {
+  width: 120px;
+  height: 200px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0px 5px;
+  box-shadow: 0 0 5px 5px #ddd;
+  background: #fff;
+}
+
+.middle-panel .story-section .story > img {
+  height: 100%;
+  transition: 0.3s ease-in;
+}
+
+.middle-panel .story-section .story:hover > img {
+  transform: scale(1.05);
+}
+
+.middle-panel .story-section .story .dp-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: royalblue 4px solid;
+}
+
+.middle-panel .story-section .story .dp-container > img {
+  width: 100%;
+  height: 100%;
+}
+
+.middle-panel .story-section .story .name {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding: 5px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.middle-panel .story-section .story.create .dp-image {
+  height: 80%;
+  overflow: hidden;
+}
+
+.middle-panel .story-section .story.create .dp-image img {
+  width: 100%;
+}
+
+.middle-panel .story-section .story.create .dp-container {
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  background: royalblue;
+  border: 4px solid #fff;
+}
+
+.middle-panel .story-section .story.create .dp-container i {
+  color: #fff;
+}
+
+.middle-panel .story-section .story.create .name {
+  color: #000;
+  font-size: 15px;
+  left: 10px;
+}
+
+.intro {
+  width: 321px;
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  float: left;
+}
+
+.post {
+  width: 700px;
+  background: #fff;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+  float: left;
+}
+
+.post .post-top {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.post .post-top .dp {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.post .post-top .dp a > img {
+  width: 100%;
+  cursor: pointer;
+}
+
+.post .post-top .post-info {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.post .post-top .post-info .name {
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.post .post-top .post-info .time {
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.post .post-top i {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.post .post-top > input {
+  height: 40px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  flex: 1;
+  background: #eee;
+  margin-left: 10px;
+}
+
+.post .post-content {
+  font-size: 16px;
+  font-weight: normal;
+  padding: 10px;
+}
+
+/* .post .post-content a {
+  width: 100%;
+  height: 500px;
+  margin: 5px 0px;
+} */
+
+.post .post-content a > img {
+  width: 100%;
+  margin: 5px 0px;
+  height: 500px;
+  background-color: black;
+  object-fit: contain;
+  /* border-radius: 8px; */
+}
+
+.post .post-bottom {
+  box-shadow: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 5px 5px 5px;
+  border-bottom: 2px solid #dee2e6;
+  border-top: 2px solid #dee2e6;
+}
+
+.post .post-bottom .action {
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+.post .post-bottom .action a{
+  text-decoration: none
+}
+
+
+.post .post-bottom .action:hover {
+  background: #eee;
+}
+
+.post.create .post-bottom > .action {
+  color: #d74;
+}
+
+.container .right-panel {
+  padding: 1rem;
+}
+
+.right-panel .pages-section,
+.right-panel .friends-section {
+  margin: 1rem 0px;
+}
+
+.right-panel .pages-section h4,
+.right-panel .friends-section h4 {
+  margin-bottom: 10px;
+}
+
+.right-panel .pages-section .page,
+.right-panel .friends-section .friend {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+  border-radius: 5px;
+  padding: 7px 10px;
+  color: #333;
+}
+
+.right-panel .pages-section .page:hover,
+.right-panel .friends-section .friend:hover {
+  background: #ddd;
+}
+
+.right-panel .pages-section .page > .dp,
+.right-panel .friends-section .friend > .dp {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.right-panel .pages-section .page > .dp > img,
+.right-panel .friends-section .friend > .dp > img {
+  width: 100%;
+}
+
+.right-panel .pages-section .name,
+.right-panel .friends-section .name {
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.avatar .change {
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  height: 100%;
+  padding: 0;
+  object-fit: cover;
+}
+
+.avatar .change > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 80px;
+  object-fit: cover;
+}
+
+/* Upload post */
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.follow {
+  padding: 12px 12px 0 0;
+  display: inline-block;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  /* padding: 20px; */
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25,
+  .col-75,
+  input[type="submit"] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.uploadForm .row {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#submit {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  font-size: 17px;
+  padding: 6px;
+  border-radius: 7px;
+  margin-left: 34%;
+  width: 250px;
+  margin-top: 5px;
+}

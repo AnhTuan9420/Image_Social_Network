@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Interesting</title>
+  <link rel='stylesheet' href='/assets/css/profile.css' />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="/user/HomePage">
+        <img style="height: 50px;" src="/assets/images/logo11.png" alt="Logo" />
+      </a>
+      <input type="text" name="search" placeholder="Search Post ...">
+    </div>
+
+    <div class="nav-middle">
+      <a href="/user/HomePage" title="Home">
+        <i class="fa fa-home"></i>
+      </a>
+
+      <a class="active" title="Profile">
+        <i class="fa fa-user"></i>
+      </a>
+
+      <a href="/user/SavePosts" title="Saving">
+        <i class="fa fa-bookmark"></i>
+      </a>
+
+      {{!-- <a href="/user/Messages" title="Message">
+        <i class="fab fa-facebook-messenger"></i>
+      </a> --}}
+    </div>
+
+    <div class="nav-right">
+
+      <a href="#">
+        <i class="fa fa-bell"></i>
+      </a>
+      <a href="/account/logout">
+        <img style="width: 40px;" src="/assets/images/logout.png">
+      </a>
+    </div>
+  </nav>
+
+  <div class="profile-container">
+    {{!-- <img src="/assets/images/curved0.jpg" class="cover-img"> --}}
+
+    <div class="profile-details">
+      <div class="pd-row">
+        <img style="height: 120px; width: 120px; margin-right: 15px; object-fit: cover;" src="/uploads/{{User.Avatar}}"
+          alt="Avartar">
+        <div>
+          <h3>{{User.name}}<img style="width: 17px;margin-left: 7px;" src="/assets/images/verify.png" title="Verified">
+          </h3>
+          <br>
+          <h4>{{followercount}} Follower</h4>
+          <h4>{{followcount}} Following</h4>
+          <h4>{{postcount}} Posts</h4>
+          <h4>{{savecount}} Saved posts</h4>
+        </div>
+        <img src="/assets/images/curved0.jpg" class="cover-img">
+      </div>
+    </div>
+
+
+
+    <div class="nav-content">
+      <a href="/user/Profile">
+        <h3>Information</h3>
+      </a>
+      <a href="/user/getPost/{{UserAcc._id}}">
+        <h3>List Posts</h3>
+      </a>
+      <a class="active">
+        <h3>Update Information</h3>
+      </a>
+      <a href="/user/ChangePassword/{{UserAcc._id}}">
+        <h3>Change Password</h3>
+      </a>
+    </div>
+
+    <!-- Main -->
+    {{!-- enctype="multipart/form-data" --}}
+    <div class="mess-container">
+      <div class="mess-details">
+        <h1 style="text-align: center; margin: 10px;">Update Infomation</h1>
+        <form class="uploadForm" action="/user/UpdateInfo" method="POST" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-35">
+              <label> <img style="height: 120px; width: 120px; margin-left: 40px; object-fit: cover;"
+                  src="/uploads/{{User.Avatar}}" alt="Avartar" id="output">
+              </label>
+            </div>
+            <div class="col-65" style="margin-top: 66px;">
+              <input name="image" id="image" type="file" onchange="loadFile(event)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-35">
+              <label for="name">Full name: <strong>{{User.name}}</strong> </label>
+            </div>
+            <div class="col-65">
+              <input type="text" value="" id="name" name="name" placeholder="Your name...">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-35">
+              <label for="Phone">Phone Number: <strong>0{{User.Phone}}</strong></label>
+            </div>
+            <div class="col-65">
+              <input style="width: 458px;height: 43px; padding: 12px; border: 1px solid #ccc; border-radius: 4px;"
+                type="number" value="" id="Phone" name="Phone" placeholder="Your Phone Number...(example: 0123456789)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-35">
+              <label for="Address">Address: <strong>{{User.Address}}</strong></label>
+            </div>
+            <div class="col-65">
+              <input type="text" value="" id="Address" name="Address" placeholder="City... (example: Ha Noi)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-35">
+              <label for="Age">DoB: <strong>{{moment User.Age format ="MMMM DD - YYYY"}}</strong></label>
+            </div>
+            <div class="col-65">
+              <input style="width: 458px;height: 43px; padding: 12px; border: 1px solid #ccc; border-radius: 4px;"
+                type="date" value="" id="Age" name="Age" placeholder="Age (example: 18)">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-35">
+              <label for="email">Email: <strong>{{User.email}}</strong></label>
+            </div>
+            <div class="col-65">
+              <input type="text" value="" id="email" name="email" placeholder="name@example.com">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-35">
+              <label for='gender'>Gender: <strong>{{User.gender}}</strong></label>
+            </div>
+            <div class="col-65">
+              <select id="gender" name="gender">
+                <option></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              {{!-- <input checked='' value="" id='gender' name='gender' type='radio' value='{{Female}}'>
+              <label for='gender'>Female</label>
+              <input id='gender' name='gender' type='radio' value='{{Male}}'>
+              <label for='gender'>Male</label> --}}
+            </div>
+          </div>
+          {{!-- <input type="hidden" name="_method" value="PUT"> --}}
+          <input type="hidden" name="_id" value="{{User._id}}">
+          <button id="submit" value="" type="submit">Submit</button>
+          <br>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a>
+        <p class="mb-0 text-secondary" style="text-align: center; margin-top: 16px;">
+          Copyright ©
+          <script>
+            document.write(new Date().getFullYear())
+          </script> Anh Tuan.
+        </p>
+      </a>
+    </div>
+  </div>
+
+</body>
+<script>
+  var loadFile = function (event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function () {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>
+
+</html>

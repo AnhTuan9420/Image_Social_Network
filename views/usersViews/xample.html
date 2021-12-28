@@ -1,0 +1,274 @@
+<!-- Form upload info -->
+
+<div class='dob'>
+  <label for='dob'>Birthday</label>
+  <input id='dob' placeholder='MM/DD/YYYY' type='text'>
+</div>
+
+<div class='gender'>
+  <label for='gender-female'>Gender</label>
+  <input checked='' id='gender-female' name='gender' type='radio' value='female'>
+  <label for='gender-female'>Female</label>
+  <input id='gender-male' name='gender' type='radio' value='male'>
+  <label for='gender-male'>Male</label>
+</div>
+
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+
+<form action="/action_page.php" class="was-validated">
+  <div class="form-group">
+    <label for="uname">Username:</label>
+    <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+    <div class="valid-feedback">Valid.</div>
+    <div class="invalid-feedback">Please fill out this field.</div>
+  </div>
+  <div class="form-group form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox" name="remember" required> I agree on blabla.
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Check this checkbox to continue.</div>
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<!-- uplode post -->
+
+<div class="post">
+  <h3 class="sub-title">Upload new Post</h3>
+  <div class="post-top">
+    <form action="/user/addPost" method="POST">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Article Title</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" placeholder="Enter name of your Post" id="title" name="title"
+            required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Upload Image:
+        </label>
+        <div class="col-sm-10">
+          <input name="postImage" id="postImage" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+          <textarea id="desc" name="desc" rows="5" cols="5" class="form-control" placeholder="Describe your post"
+            required></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary waves-effect">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+
+<div class="container" style="margin-top: 5cm;">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item waves-effect waves-light">
+      <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+        aria-selected="true">Draft</a>
+    </li>
+    <li class="nav-item waves-effect waves-light">
+      <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+        aria-selected="false">Publish</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+      {{#each publish}}
+      <div class="card" style="width: auto; margin-top:12px">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{description}}</h6>
+          <p class="card-text">{{category_name.name}}</p>
+          <p class="card-text">{{create_date}}</p>
+          <p class="card-text">{{update_date}}</p>
+          <a href="/users/edit_article/{{_id}}" class="card-link">Edit</a>
+          <form action="/users/deleteArticle" method="POST" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="_id" value={{_id}}>
+            <input type="hidden" name="_method" value="DELETE">
+            <a class="card-link">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </a>
+          </form>
+
+          <form action="/users/unpublish" method="POST" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="_id" value={{_id}}>
+            <input type="hidden" name="_method" value="PUT">
+            <a class="card-link">
+              <button type="submit" class="btn btn-success">Unpublish</button>
+            </a>
+          </form>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+
+
+    <div class="tab-pane fade active show" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      {{#each article}}
+      <div class="card" style="width: auto; margin-top:12px">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{description}}</h6>
+          <p class="card-text">{{category_name.name}}</p>
+          <p class="card-text">{{create_date}}</p>
+          <p class="card-text">{{update_date}}</p>
+          <a href="/users/edit_article/{{_id}}" class="card-link">Edit</a>
+          <form action="/users/deleteArticle" method="POST" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="_id" value={{_id}}>
+            <input type="hidden" name="_method" value="DELETE">
+            <a class="card-link">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </a>
+          </form>
+
+          <form action="/users/publishing" method="POST" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="_id" value={{_id}}>
+            <input type="hidden" name="_method" value="PUT">
+            <a class="card-link">
+              <button type="submit" class="btn btn-success">Publishing</button>
+            </a>
+          </form>
+
+
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+<!-- Details -->
+<div class="container">
+  <div class="middle-panel">
+    <div class="post">
+      <div class="post-top">
+        <div class="dp">
+          <img src="/uploads/{{Posts.author.Avatar}}" alt="Avartar">
+        </div>
+        <div class="post-info">
+          <p class="name">{{Posts.author.name}}</p>
+          <span class="time">{{Posts.timeCreated}}</span>
+        </div>
+        <i class="fas fa-ellipsis-h">
+
+        </i>
+      </div>
+
+      <div class="post-content">
+        <p style="color: royalblue; word-break: break-all;">#{{Posts.title}}</p>
+        <p style=" margin-top: 10px; margin-bottom: 5px; word-break: break-all;">{{Posts.desc}}</p>
+        <img src="/uploads/{{Posts.postImage}}" alt="Posts Image">
+      </div>
+      <div class="post-bottom">
+        <div class="action">
+          <i class="far fa-thumbs-up"></i>
+          <span>Like</span>
+        </div>
+        <div class="action">
+          <i class="far fa-comment"></i>
+          <span>Comment</span>
+        </div>
+        <div class="action">
+          <form class="uploadForm" action="/user/SavePosts/{{Posts._id}}" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <button style="border: 0; font-size: 18px;background: white;" type="submit" class="fa fa-bookmark">
+              <span style="font-family: auto;"> Save</span></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="pt-5 mt-5">
+        <h3 class="mb-5 font-weight-bold"
+          style="margin-top: 14px;margin-bottom: 14px; margin-left: 5px; font-size: 21px;">0 Comments</h3>
+        <ul class="comment-list">
+          {{#each Comment}}
+          <li class="comment">
+            <div class="vcard bio">
+              <img src="/uploads/{{author.Avatar}}" alt="Avartar">
+            </div>
+            <div class="comment-body">
+              <div class="post-info">
+                <h3 class="name">{{author.name}}</h3>
+                <span class="meta">{{author.timeCreated}}</span>
+              </div>
+              <p>
+                {{content}}
+              </p>
+
+              {{!-- <p><a href="#" class="reply">Reply</a></p>
+            </div> --}}
+            {{!-- <ul class="children">
+              <li class="comment">
+                <div class="vcard bio">
+                  <img src="/uploads/{{User.Avatar}}" alt="Avartar">
+                </div>
+                <div class="comment-body">
+                  <div class="post-info">
+                    <h3 class="name">{{User.name}}</h3>
+                    <span class="meta">{{User.timeCreated}}</span>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus,
+                    ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum
+                    impedit necessitatibus, nihil?</p>
+                  <p><a href="#" class="reply">Reply</a></p>
+                </div>
+              </li>
+            </ul> --}}
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+
+      <div class="post-bottom">
+        <div class="post-top">
+          <div class="dp">
+            <img src="/uploads/{{User.Avatar}}" alt="Avartar">
+          </div>
+
+          <form class="uploadForm" action="/user/doComment" method="POST">
+            <div class="row">
+              <div class="col-60">
+                <textarea id="content" name="content" placeholder="Add comment..." required></textarea>
+              </div>
+              <div class="col-40">
+                <input type="hidden" name="blog_id" value="{{Posts._id}}">
+                <button id="submit">
+                  Add Comment
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

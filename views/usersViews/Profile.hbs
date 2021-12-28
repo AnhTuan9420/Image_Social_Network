@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Interesting</title>
+  <link rel='stylesheet' href='/assets/css/profile.css' />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="/user/HomePage">
+        <img style="height: 50px;" src="/assets/images/logo11.png" alt="Logo" />
+      </a>
+      <input type="text" name="search" placeholder="Search Post ...">
+    </div>
+
+    <div class="nav-middle">
+      <a href="/user/HomePage" title="Home">
+        <i class="fa fa-home"></i>
+      </a>
+
+      <a class="active" title="Profile">
+        <i class="fa fa-user"></i>
+      </a>
+
+      <a href="/user/SavePosts" title="Saving">
+        <i class="fa fa-bookmark"></i>
+      </a>
+    </div>
+
+    <div class="nav-right">
+
+      <a href="#">
+        <i class="fa fa-bell"></i>
+      </a>
+      <a href="/account/logout">
+        <img style="width: 40px;" src="/assets/images/logout.png">
+      </a>
+    </div>
+  </nav>
+
+  <div class="profile-container">
+    <div class="profile-details">
+      <div class="pd-row">
+        <img style="height: 120px; width: 120px; margin-right: 15px; object-fit: cover;" src="/uploads/{{User.Avatar}}" alt="Avartar">
+        <div>
+          <h3>{{User.name}}
+          <img style="width: 17px;" src="/assets/images/verify.png" title="Verified"></h3>
+          <br>
+          <h4>{{followercount}}  Follower</h4>
+          <h4>{{followcount}}  Following</h4> 
+          <h4>{{postcount}}  Posts</h4> 
+          <h4>{{savecount}}  Saved posts</h4>    
+        </div>
+        <img src="/assets/images/curved0.jpg" class="cover-img">
+      </div>
+    </div>
+
+    <div class="nav-content">
+      <a class="active">
+        <h3>Information</h3>
+      </a>
+      <a href="/user/getPost/{{UserAcc._id}}">
+        <h3>List Posts</h3>
+      </a>
+      <a href="/user/UpdateInfo/{{UserAcc._id}}">
+        <h3>Update Information</h3>
+      </a>
+      <a href="/user/ChangePassword/{{UserAcc._id}}">
+        <h3>Change Password</h3>
+      </a>
+    </div>
+
+
+    <div class="mess-container">
+      <div class="mess-details" style="background-color: #f0f1f3;">
+        <h1 style="text-align: center; margin: 10px;">User Infomation</h1>
+
+        <div class="row" style="text-align: center;font-size: 22px;">
+          <img style="height: 120px; width: 120px; object-fit: cover;" src="/uploads/{{User.Avatar}}" alt="Avartar">
+          <div class="row">
+            <label for="name">Full name: <strong>{{User.name}}</strong> 
+            <img style="width: 17px;" src="/assets/images/verify.png" title="Verified"></label>
+          </div>
+          <div class="row">
+            <label for="Phone">Phone Number: <strong>0{{User.Phone}}</strong></label>
+          </div>
+          <div class="row">
+            <label for="Address">Address: <strong>{{User.Address}}</strong></label>
+          </div>
+          <div class="row">
+            <label for="Age">DoB: <strong>{{moment User.Age format ="MMMM DD - YYYY"}}</strong></label>
+          </div>
+          <div class="row">
+            <label for="email">Email: <strong>{{User.email}}</strong></label>
+          </div>
+          <div class="row">
+            <label for='gender'>Gender: <strong>{{User.gender}}</strong></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a>
+        <p class="mb-0 text-secondary" style="text-align: center; margin-top:10px;">
+          Copyright ©
+          <script>
+            document.write(new Date().getFullYear())
+          </script> Anh Tuan.
+        </p>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

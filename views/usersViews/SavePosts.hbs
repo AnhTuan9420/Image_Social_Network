@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Interesting</title>
+  <link rel='stylesheet' href='/assets/css/savepost.css' />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="/user/HomePage">
+        <img style="height: 50px;" src="/assets/images/logo11.png" alt="Logo" />
+      </a>
+      <input type="text" name="search" placeholder="Search Post ...">
+    </div>
+
+    <div class="nav-middle">
+      <a href="/user/HomePage">
+        <i class="fa fa-home"></i>
+      </a>
+
+      <a href="/user/Profile">
+        <i class="fa fa-user"></i>
+      </a>
+
+      <a class="active">
+        <i class="fa fa-bookmark"></i>
+      </a>
+
+      {{!-- <a href="/user/Messages">
+        <i class="fab fa-facebook-messenger"></i>
+      </a> --}}
+    </div>
+
+    <div class="nav-right">
+
+      <a href="#">
+        <i class="fa fa-bell"></i>
+      </a>
+      <a href="/account/logout">
+        <img style="width: 40px;" src="/assets/images/logout.png">
+      </a>
+    </div>
+  </nav>
+
+  {{!-- Main --}}
+
+  <div class="ranking-container">
+    <h2 style="text-align: center; margin-bottom: 15px;"> {{User.name}} saved {{savecount}} posts to the list</h2>
+
+    <div class="ranking-details">
+      <div class="main-posts">
+        {{#each SavePosts}}
+        <div class="post-box">
+          <a href="/user/Post_Detail/{{posts_id._id}}">
+            <img src="/uploads/{{posts_id.postImage}}" alt="Posts Image">
+            <div class="overlay">
+              <div class="text">
+                <i class="far fa-user" style="margin-right: 3px;"></i>{{posts_id.author.name}}
+                <br>
+                <br>
+                #{{posts_id.title}}
+              </div>
+            </div>
+          </a>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a>
+        <p class="mb-0 text-secondary" style="text-align: center; margin-top: 16px;">
+          Copyright ©
+          <script>
+            document.write(new Date().getFullYear())
+          </script> Anh Tuan.
+        </p>
+      </a>
+    </div>
+  </div>
+
+</body>
+
+</html>

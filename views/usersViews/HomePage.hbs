@@ -1,0 +1,341 @@
+<html lang="en">
+
+<head>
+  <title>Interesting</title>
+  <link rel="stylesheet" href="/assets/css/homepage.css" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="/user/HomePage">
+        <img style="height: 50px;" src="/assets/images/logo11.png" alt="Logo" />
+      </a>
+      <form action="/user/doSearch" method="GET">
+        <input id="se" type="text" name="search" placeholder="Search Post ..." />
+      </form>
+    </div>
+
+    <div class="nav-middle">
+      <a class="active" title="Home">
+        <i class="fa fa-home"></i>
+      </a>
+
+      <a href="/user/Profile" title="Profile">
+        <i class="fa fa-user"></i>
+      </a>
+
+      <a href="/user/SavePosts" title="Saving">
+        <i class="fa fa-bookmark"></i>
+      </a>
+
+      {{!-- <a href="/user/Messages" title="Message">
+        <i class="fab fa-facebook-messenger"></i>
+      </a> --}}
+    </div>
+
+    <div class="nav-right">
+
+      <a href="#">
+        <i class="fa fa-bell"></i>
+      </a>
+      <a href="/account/logout">
+        {{!-- <i class="fas fa-share-square"></i> --}}
+        <img style="width: 40px;" src="/assets/images/logout.png">
+      </a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="left-panel">
+      <div class="intro">
+        <div class="avatar">
+          <a class="change" href="/user/Profile/{{req.session.userId}}">
+            {{! <a href="/user/Profile"> }}
+              {{! <img src="/assets/images/tuan.jpg" alt="Avatar"> }}
+              <img src="/uploads/{{User.Avatar}}" alt="Avartar" />
+              {{! </a> }}
+          </a>
+        </div>
+        <ul>
+          <li>
+            <h2>{{User.name}}</h2>
+            <img style="width: 17px; margin-left: 7px;" src="/assets/images/verify.png" title="Verified">
+          </li>
+          <li>
+            <i class="fas fa-map-marker-alt">
+              Lives in
+              <strong style="color: black;">{{User.Address}}</strong></i>
+          </li>
+          <li>
+            <i class="fas fa-phone-square-alt">
+              Phone number:
+              <strong style="color: black;">0{{User.Phone}}</strong></i>
+          </li>
+          <li>
+            <i class="fas fa-calendar-alt">
+              Joined on
+              <strong style="color: black;">{{moment User.timeCreated format ="MMMM DD - YYYY"}}</strong></i>
+          </li>
+           <li>
+            <i class="fas fa-birthday-cake"> Dob: <strong style="color: black;">{{moment User.Age format ="MMMM DD - YYYY"}}</strong></i>
+          </li>
+          <li>
+            <i class="fas fa-users"> Followers: <strong style="color: black;">{{followercount}}</strong></i>
+          </li>
+          <li>
+            <i class="fas fa-images"> Posts: <strong style="color: black;">{{postcount}}</strong></i>
+          </li>
+          <li>
+            <i class="fas fa-image"> Saved posts: <strong style="color: black;">{{savecount}}</strong></i>
+          </li>         
+        </ul>
+      </div>
+
+      {{! <ul>
+        <li>
+          <span class="profile"></span>
+          <p>Anh Tuan</p>
+        </li>
+        <li>
+          <i class="fa fa-user-friends"></i>
+          <p>Friends</p>
+        </li>
+        <li>
+          <i class="fa fa-play-circle"></i>
+          <p>Videos</p>
+        </li>
+        <li>
+          <i class="fa fa-flag"></i>
+          <p><a href="/user/HomePage">Pages</a></p>
+        </li>
+        <li>
+          <i class="fa fa-users"></i>
+          <p>Groups</p>
+        </li>
+        <li>
+          <i class="fa fa-bookmark"></i>
+          <p>Bookmark</p>
+        </li>
+        <li>
+          <i class="fab fa-facebook-messenger"></i>
+          <p>Inbox</p>
+        </li>
+        <li>
+          <i class="fas fa-calendar-week"></i>
+          <p>Events</p>
+        </li>
+        <li>
+          <i class="fa fa-bullhorn"></i>
+          <p>Ads</p>
+        </li>
+        <li>
+          <i class="fas fa-hands-helping"></i>
+          <p>Offers</p>
+        </li>
+        <li>
+          <i class="fas fa-briefcase"></i>
+          <p>Jobs</p>
+        </li>
+        <li>
+          <i class="fa fa-star"></i>
+          <p>Favourites</p>
+        </li>
+      </ul> }}
+
+      <div class="footer-links">
+        {{!-- <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Advance</a>
+        <a href="#">More</a> --}}
+        <a>
+          <p class="mb-0 text-secondary" style="text-align: center;">
+            Copyright ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script>
+            Anh Tuan.
+          </p>
+        </a>
+      </div>
+    </div>
+
+    <div class="middle-panel">
+      {{#if err}}
+      <div id="alert-suc" role="alert" class="alert alert-success alert-dismissible">
+        {{err}}
+        <button style="margin-right: 427px;margin-top: 3px;" type="button" class="close" data-dismiss="alert"></button>
+      </div>
+      {{/if}}
+
+      {{!-- <div class="post create">
+        <div class="post-top">
+          <div class="dp">
+            <img src="./images/girl.jpg" alt="">
+          </div>
+          <input type="text" placeholder="What's on your mind, Aashish ?" />
+        </div>
+
+        <div class="post-bottom">
+          <div class="action">
+            <i class="fa fa-video"></i>
+            <span>Live video</span>
+          </div>
+          <div class="action">
+            <i class="fa fa-image"></i>
+            <span>Photo</span>
+          </div>
+          <div class="action">
+            <i class="fa fa-smile"></i>
+            <span>Feeling/Activity</span>
+          </div>
+        </div>
+      </div> --}}
+
+      {{#if search}}
+      {{else}}
+      <div class="post create">
+        <h2 style="text-align: center; margin: 10px; color: var;">Upload new Post</h2>
+
+        <form class="uploadForm" action="/user/addPost" method="POST" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-25">
+              <label>Post Hashtag <strong>(#)</strong>:</label>
+            </div>
+            <div class="col-75">
+              <input type="text" placeholder="Enter the hashtag of your Post..." id="title" name="title" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label>Upload Image: </label>
+              <img style="width: 250px; height: 250px; margin-left:200px; object-fit: contain;" id="output" />
+            </div>
+            <div class="col-75">
+              <input name="image" id="image" type="file" onchange="loadFile(event)" required />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label>Description:</label>
+            </div>
+            <div class="col-75">
+              <textarea id="desc" name="desc" placeholder="Describe your Post..." required></textarea>
+            </div>
+          </div>
+
+          <button id="submit" type="submit">Post</button>
+        </form>
+      </div>
+      {{/if}}
+
+
+      {{!-- POSTS --}}
+      {{#each Posts}}
+      <div class="post">
+        <div class="post-top">
+          <div class="dp">
+            {{#equals author.account_id ../session.userId}}
+            <a href="/user/Profile">
+              <img src="/uploads/{{author.Avatar}}" alt="Avartar">
+            </a>
+            {{else}}
+            <a href="/user/OtherProfile/{{author._id}}">
+              <img src="/uploads/{{author.Avatar}}" alt="Avartar">
+            </a>
+            {{/equals}}
+          </div>
+          <div class="post-info">
+            <a style="text-decoration: none; color:black;">
+              <p class="name">{{author.name}}<img style="width: 13px; margin-left: 3px;" src="/assets/images/verify.png"
+                  title="Verified">
+              </p>
+            </a>
+            <span class="time">{{moment author.timeCreated format ="MMMM DD- YYYY   hh:mm:ss A"}}</span>
+          </div>
+          <i class="fas fa-ellipsis-h"></i>
+        </div>
+
+        <div class="post-content">
+          <p style="color: royalblue; word-break: break-all;">#{{title}}</p>
+          <p style=" margin-top: 10px; margin-bottom: 5px; word-break: break-all;"><strong>DESC: </strong>{{desc}}</p>
+          <a href="/user/Post_Detail/{{_id}}">
+            <img src="/uploads/{{postImage}}" alt="Posts Image">
+          </a>
+        </div>
+        <div class="post-bottom" style="margin-right: 12px;">
+
+
+          <div style="width: 100%;text-align: center;">
+            <div class="action">
+              <a href="/user/Post_Detail/{{_id}}">
+                <i class="fas fa-eye"></i>
+                <span>View Detail</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+
+      {{!-- POSTS --}}
+    </div>
+
+    <div class="right-panel">
+      {{! <div class="pages-section">
+        <h4>Your pages</h4>
+        <a class='page' href="#">
+          <div class="dp">
+            <img src="/assets/images/member-7.png" alt="">
+          </div>
+          <p class="name">Cody</p>
+        </a>
+
+        <a class='page' href="#">
+          <div class="dp">
+            <img src="/assets/images/member-7.png" alt="">
+          </div>
+          <p class="name">Cody Tutorials</p>
+        </a>
+      </div> }}
+      <div class="friends-section">
+        {{!-- <h4 style="font-size: 22px; color: rgb(170, 136, 136);">{{followcount}} Following</h4> --}}
+        <h4 style="font-size: 22px; color: rgb(170, 136, 136);">The Users of the System</h4>
+        {{#each User1}}
+        <a class="friend" href="#">
+          <div class="dp">
+            <img src="/uploads/{{Avatar}}" alt="Posts Image">
+          </div>
+          <p class="name"><strong>{{name}}</strong></p>
+        </a>
+
+        {{/each}}
+
+
+      </div>
+    </div>
+  </div>
+  <script>
+    var loadFile = function (event) {
+      var output = document.getElementById('output');
+      output.src = URL.createObjectURL(event.target.files[0]);
+      output.onload = function () {
+        URL.revokeObjectURL(output.src) // free memory
+      }
+    };
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+
+
+</html>

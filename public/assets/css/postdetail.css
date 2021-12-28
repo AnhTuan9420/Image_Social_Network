@@ -1,0 +1,466 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  word-break: break-all;
+}
+
+nav {
+  height: 70px;
+  width: 100%;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px #ccc;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+nav .nav-left,
+nav .nav-right {
+  display: flex;
+  align-items: center;
+}
+
+nav .nav-left > img {
+  width: 51px;
+  border-radius: 16px;
+}
+/* nav .nav-left a{
+      width: auto;
+      height: auto;
+  } */
+
+nav .nav-left > input {
+  height: 40px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  background-color: #eee;
+  margin-left: 10px;
+}
+
+nav .nav-middle {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 10px;
+  /* margin-left: 39px; */
+}
+
+nav .nav-middle a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+  margin: 0px 36px;
+}
+
+nav .nav-middle a:hover {
+  background: rgb(233, 223, 223);
+}
+
+nav .nav-middle a.active {
+  color: royalblue;
+  position: relative;
+}
+
+nav .nav-middle a.active::after {
+  content: "";
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: royalblue;
+}
+
+nav .nav-middle a > i {
+  font-size: 28px;
+}
+
+nav .nav-right .profile,
+.container .left-panel .profile {
+  /* background: url('https://fontawesome.com/v5.9/icons/birthday-cake?style=solid'); */
+  height: 30px;
+  width: 30px;
+  background-size: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+nav .nav-right a {
+  text-decoration: none;
+  color: #333;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: #eee;
+  display: grid;
+  place-items: center;
+  margin-left: 1rem;
+}
+
+nav .nav-right a > i {
+  font-size: 18px;
+}
+
+
+#right{
+  width: 70%;
+}
+
+#left{
+  width: 30%;
+}
+
+
+#container {
+  display: flex;
+  width: 100%;
+}
+
+.left {
+  width: 66%;
+  
+}
+
+.right {
+  width: 34%;
+
+}
+
+.alert-dismissible .btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  padding: 1.25rem 1rem;
+}
+
+.close {
+  position: absolute;
+  z-index: 2;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+
+.close {
+  background: transparent
+  url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E")
+  50%/1em auto no-repeat;
+border: 0;
+border-radius: 0.25rem;
+box-sizing: content-box;
+color: #000;
+height: 1em;
+opacity: 0.5;
+padding: 0.25em;
+width: 1em;
+}
+.middle-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.middle-panel .story-section {
+  display: flex;
+  padding: 1rem;
+}
+
+.middle-panel .story-section .story {
+  width: 120px;
+  height: 200px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0px 5px;
+  box-shadow: 0 0 5px 5px #ddd;
+  background: #fff;
+}
+
+.middle-panel .story-section .story > img {
+  height: 100%;
+  transition: 0.3s ease-in;
+}
+
+.middle-panel .story-section .story:hover > img {
+  transform: scale(1.05);
+}
+
+.middle-panel .story-section .story .dp-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: royalblue 4px solid;
+}
+
+.middle-panel .story-section .story .dp-container > img {
+  width: 100%;
+  height: 100%;
+}
+
+.middle-panel .story-section .story .name {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding: 5px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.middle-panel .story-section .story.create .dp-image {
+  height: 80%;
+  overflow: hidden;
+}
+
+.middle-panel .story-section .story.create .dp-image img {
+  width: 100%;
+}
+
+.middle-panel .story-section .story.create .dp-container {
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  background: royalblue;
+  border: 4px solid #fff;
+}
+
+.middle-panel .story-section .story.create .dp-container i {
+  color: #fff;
+}
+
+.middle-panel .story-section .story.create .name {
+  color: #000;
+  font-size: 15px;
+  left: 10px;
+}
+
+/*.post {
+   width: 700px;
+  background: #fff;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+  float: left; 
+}*/
+
+.post .post-top {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.post .post-top .dp {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.post .post-top .dp a > img {
+  width: 100%;
+  cursor: pointer;
+  object-fit: cover;
+  height: 100%;
+}
+
+.post .post-top .dp > img {
+  width: 100%;
+  cursor: pointer;
+  object-fit: cover;
+  height: 100%;
+}
+
+.post .post-top .post-info {
+  margin-left: 20px;
+  font-weight: bold;
+}
+
+.post .post-top .post-info .name {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.post .post-top .post-info .time {
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.post .post-top i {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.post .post-top > input {
+  height: 40px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  flex: 1;
+  background: #eee;
+  margin-left: 10px;
+}
+
+.post .post-content {
+  font-size: 16px;
+  font-weight: normal;
+  padding: 10px;
+}
+
+.left .post-content > img {
+  width: 100%;
+  background-color: black;
+  object-fit: contain;
+  height: 700px;
+}
+
+.post .post-bottom {
+  box-shadow: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px 5px 5px;
+  border-bottom: 2px solid #dee2e6;
+  border-top: 2px solid #dee2e6;
+}
+
+.post .post-bottom .action {
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+.post .post-bottom .action a {
+  text-decoration: none;
+}
+
+.post .post-bottom .action:hover {
+  background: #eee;
+}
+
+.post.create .post-bottom > .action {
+  color: #d74;
+}
+
+.uploadForm .row {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#submit {
+  border: 0;
+  font-size: 20px;
+  color: royalblue;
+  background-color: white;
+}
+.col-40 {
+  float: left;
+  width: 44%;
+  margin-top: 6px;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 459px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.col-60 {
+  float: left;
+  width: 202%;
+  margin-top: 6px;
+}
+
+.container .footer-links {
+  padding: 5px 1rem;
+}
+
+.container .footer-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  margin-left: 15px;
+}
+
+/* Comment */
+
+.form-group {
+  clear: both;
+}
+
+.comment-list {
+  padding: 0;
+  margin: 0;
+}
+.comment-list .children {
+  padding: 50px 0 0 80px;
+  margin: 0;
+  float: left;
+  width: 100%;
+}
+.comment-list li {
+  padding: 0;
+  margin: 0 0 30px 0;
+  float: left;
+  width: 100%;
+  clear: both;
+  list-style: none;
+}
+.comment-list li .vcard {
+  width: 80px;
+  float: left;
+}
+.comment .vcard img {
+  width: 50px;
+  border-radius: 50%;
+}
+.comment-list li .comment-body {
+  float: right;
+  width: calc(100% - 80px);
+}
+.comment-list li .comment-body h3 {
+  font-size: 16px;
+}
+.comment-list li .comment-body .meta {
+  /* text-transform: uppercase; */
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #1b18b6;
+}
+.comment-list li .comment-body .reply {
+  padding: 5px 10px;
+  background: #e6e6e6;
+  color: #000000;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  border-radius: 4px;
+}
+.comment-list li .comment-body .reply:hover {
+  color: #fff;
+  background: black;
+}
+
+
+
+
